@@ -20,7 +20,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2JO-bK-wuF">
                                 <rect key="frame" x="139" y="540" width="97" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.073249289353231495" green="1" blue="0.087476785103911103" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
                                 <state key="normal" title="Take Photo">
@@ -41,6 +41,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="132.68365817091455"/>
+        </scene>
+        <!--Second View Controller-->
+        <scene sceneID="31u-EL-5mf">
+            <objects>
+                <viewController id="PPv-YT-aNx" customClass="SecondViewController" customModule="Recycle" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VNS-dS-bno">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="ZDl-mR-TD8"/>
+                    </view>
+                    <connections>
+                        <outlet property="mainView" destination="VNS-dS-bno" id="Dbf-nQ-8fR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tmw-7f-AJh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="878" y="132"/>
         </scene>
     </scenes>
 </document>
