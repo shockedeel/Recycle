@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,11 +16,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2JO-bK-wuF">
-                                <rect key="frame" x="139" y="540" width="97" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="0.073249289353231495" green="1" blue="0.087476785103911103" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2JO-bK-wuF" customClass="cusButton" customModule="Recycle" customModuleProvider="target">
+                                <rect key="frame" x="100" y="450" width="175" height="42"/>
+                                <color key="backgroundColor" red="0.21511130016001351" green="0.65057899746192893" blue="0.15466970874602662" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="WXt-fZ-uI5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="17"/>
                                 <state key="normal" title="Take Photo">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -30,12 +30,39 @@
                                     <action selector="takePhotoButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wUc-D1-Ng2"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="recyclesymbol" translatesAutoresizingMaskIntoConstraints="NO" id="AoZ-NM-Esf">
+                                <rect key="frame" x="50" y="40" width="275" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="0SK-he-2YT"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Thank You For Recycling!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QN3-pT-8Qw">
+                                <rect key="frame" x="50" y="290" width="275" height="130"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="Oyn-kQ-fch"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="KohinoorTelugu-Regular" family="Kohinoor Telugu" pointSize="18"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.35823575142716391" green="0.64567359609567343" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="QN3-pT-8Qw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="8Rd-ae-CwS"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2JO-bK-wuF" secondAttribute="trailing" constant="100" id="8fM-wG-3Gb"/>
+                            <constraint firstItem="2JO-bK-wuF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="LEF-N1-NAW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AoZ-NM-Esf" secondAttribute="trailing" constant="50" id="XxZ-1J-Lqk"/>
+                            <constraint firstItem="QN3-pT-8Qw" firstAttribute="top" relation="greaterThanOrEqual" secondItem="AoZ-NM-Esf" secondAttribute="bottom" constant="50" id="Z4h-Y4-GSy"/>
+                            <constraint firstItem="AoZ-NM-Esf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="f2F-uA-V3e"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QN3-pT-8Qw" secondAttribute="trailing" constant="50" id="fBF-on-hb7"/>
+                            <constraint firstItem="2JO-bK-wuF" firstAttribute="top" secondItem="QN3-pT-8Qw" secondAttribute="bottom" constant="30" id="fdy-Bh-QZq"/>
+                            <constraint firstItem="AoZ-NM-Esf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="ix7-Kd-6pV"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="mainUI" destination="8bC-Xf-vdC" id="raJ-R0-njk"/>
+                        <outlet property="outputTextLabel" destination="QN3-pT-8Qw" id="7WB-da-Okg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -45,11 +72,22 @@
         <!--Second View Controller-->
         <scene sceneID="31u-EL-5mf">
             <objects>
-                <viewController id="PPv-YT-aNx" customClass="SecondViewController" customModule="Recycle" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="2" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PPv-YT-aNx" customClass="SecondViewController" customModule="Recycle" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VNS-dS-bno">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="atL-E7-07t">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="270"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="atL-E7-07t" firstAttribute="trailing" secondItem="ZDl-mR-TD8" secondAttribute="trailing" id="DoL-hb-vdg"/>
+                            <constraint firstItem="atL-E7-07t" firstAttribute="leading" secondItem="ZDl-mR-TD8" secondAttribute="leading" id="cN9-Yj-z0h"/>
+                            <constraint firstItem="atL-E7-07t" firstAttribute="top" secondItem="VNS-dS-bno" secondAttribute="top" id="lKO-Jc-YFh"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ZDl-mR-TD8"/>
                     </view>
                     <connections>
@@ -58,7 +96,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tmw-7f-AJh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="878" y="132"/>
+            <point key="canvasLocation" x="877.60000000000002" y="131.78410794602701"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="recyclesymbol" width="1000" height="978"/>
+    </resources>
 </document>

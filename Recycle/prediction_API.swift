@@ -1,75 +1,20 @@
 //
-//  ViewController.swift
+//  prediction_API.swift
 //  Recycle
 //
-//  Created by Kolbe Surran on 10/2/19.
+//  Created by Kolbe Surran on 11/9/19.
 //  Copyright © 2019 Shockedeel. All rights reserved.
 //
 
+import Foundation
 import UIKit
-import AVFoundation
-import Vision
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    var responseMessage: String = ""
-    @IBOutlet weak var outputTextLabel: UILabel!
-    @IBOutlet var mainUI: UIView!
-    var api = PredictionApi()
-    var recycle = Recycle()
-    @IBAction func takePhotoButton(_ sender: Any) {
-       let imagePickerController=UIImagePickerController()
-       imagePickerController.delegate=self
-        if UIImagePickerController.isSourceTypeAvailable(.camera){
-            
-            imagePickerController.sourceType = .camera
-            self.present(imagePickerController, animated: true, completion: nil)
-        }
-        else{
-            imagePickerController.sourceType = .photoLibrary
-            self.present(imagePickerController, animated: true, completion: nil)
-            
-            print("unable to reach camera")
-            
-        }
-        let viewNext = SecondViewController();
-        
-        self.present(viewNext, animated: true, completion: nil)
-        
-    }
-    internal func imagePickerController(_ picker: UIImagePickerController,didFinishPickingMediaWithInfo info: [String : Any]) {
-        picker.dismiss(animated: true, completion: nil)
-        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage
-        
-            else {
-            return
-        }
-       
-            responseMessage = makePredictionRequest(image: image)
-            outputTextLabel.text=responseMessage
-        
-        
-        
-        
-       
-        
-    }
+class PredictionApi{
+   var recycle = Recycle()
     
-    
-    
-   
-    override func viewDidLoad() {
-        super.viewDidLoad()
-       
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     func makePredictionRequest(image: UIImage)->String{
         var toReturn = [prediction(probability: 0.4, tagId: "", tagName: "")]
         
-        let semaphore =  DispatchSemaphore(value: 0)
+        
         var responseString = ""
         var dataToReturn: Data
         dataToReturn = "".data(using: .utf8)!
@@ -80,8 +25,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         request.addValue("application/octet-stream",forHTTPHeaderField: "Content-Type")
         request.httpBody=imageData
         
-        var stringReturn = ""
-        
+        var stringReturn = ""       
+        let semaphore = DispatchSemaphore(value: 0)
        let task = URLSession.shared.dataTask(with: request) { data, response, error in
            guard let data = data,
                let response = response as? HTTPURLResponse,
@@ -89,7 +34,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                print("error", error ?? "Unknown error")
                return
            }
-        
+        semaphore.signal()
             do {
                 //here dataResponse received from a network request
                 let decoder = JSONDecoder()
@@ -101,7 +46,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
               toReturn =  model.predictions//Output - 1221
                  stringReturn = self.recycle.GetResponse(array: toReturn)
                 
-                
             } catch let parsingError {
                 print("Error", parsingError)
             }
@@ -112,21 +56,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                print("response = \(response)")
                return
            }
-        
+        sleep(5)
             
             responseString = String(data: data, encoding: .utf8) ?? ""
             
         
            dataToReturn = data
        }
-        task.resume()
         
-       
-    
+       task.resume()
+    semaphore.wait()
         
         return stringReturn
     }
     
-
+    
 }
-
